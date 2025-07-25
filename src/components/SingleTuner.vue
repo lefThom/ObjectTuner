@@ -47,11 +47,10 @@ watch(sliderValue, (newVal) => {
 
 <style src="@vueform/slider/themes/default.css"></style>
 <style scoped>
-  /*.single-tuner label {
-    display: block;
+  .single-tuner label {
     margin-bottom: 0.25rem;
     font-weight: 600;
-  }*/
+  }
   .single-tuner {
     margin: em;
     display: flex;

@@ -20,7 +20,7 @@ const props = defineProps({
   },
   placeholder: {
     type: String,
-    default: 'Choisir...'
+    default: 'Choose...'
   },
   clearable: {
     type: Boolean,
@@ -55,24 +55,54 @@ const emit = defineEmits(['update:modelValue'])
 </template>
 
 <style scoped>
-  .v-select {
-   margin-bottom: 1rem;
-  }
+:deep() {
+  --vs-controls-color: #d9d9d9;
+  --vs-border-color: #10b98150;
 
-  :deep() {
-    --vs-controls-color: #d9d9d9;
-    --vs-border-color: #10b98150;
+  --vs-dropdown-bg: #d9d9d9;
+  --vs-dropdown-color: #333333;
 
-    --vs-dropdown-bg: #d9d9d9;
-    --vs-dropdown-color: #cc99cd;
-    --vs-dropdown-option-color: #cc99cd;
+  --vs-selected-bg: #10b981;
+  --vs-selected-color: #333333;
 
-    --vs-selected-bg: #10b981;
-    --vs-selected-color: #eeeeee;
+  --vs-search-input-color: #333333;
 
-    --vs-search-input-color: #eeeeee;
+  --vs-dropdown-option--active-bg: #10b981;
+  --vs-dropdown-option--active-color: #333333;
+}
 
-    --vs-dropdown-option--active-bg: #10b981;
-    --vs-dropdown-option--active-color: #eeeeee;
-  }
+.v-select {
+  margin-bottom: 1rem;
+  border: 1px solid var(--vs-border-color);
+  border-radius: 6px;
+  background-color: var(--vs-controls-color);
+}
+
+.v-select.vs--single .vs__selected {
+  color: var(--vs-selected-color);
+  font-weight: normal;
+}
+
+.vs__dropdown-menu {
+  background-color: var(--vs-dropdown-bg);
+  color: var(--vs-dropdown-color);
+  border-radius: 6px;
+}
+
+.vs__dropdown-option {
+  color: var(--vs-dropdown-color);
+  padding: 8px 12px;
+}
+
+.vs__dropdown-option:hover,
+.vs__dropdown-option--active {
+  background-color: var(--vs-dropdown-option--active-bg);
+  color: var(--vs-dropdown-option--active-color);
+}
+
+.vs__placeholder {
+  color: var(--vs-dropdown-color);
+  opacity: 0.7;
+}
+
 </style>

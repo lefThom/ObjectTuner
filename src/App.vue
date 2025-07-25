@@ -17,6 +17,13 @@ main {
   flex-direction: column;
 }
 
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 2rem 0;
+  color: var(--color-heading);
+}
+
 footer {
   font-style: italic;
 }

@@ -46,23 +46,18 @@ onMounted(async () => {
           @update:value="val => prop.value = val"
       />
     </div>
-    
-    <p>selectedId: {{ selectedId }}</p>
-    <p>typeof selectedId: {{ typeof selectedId }}</p>
-    <pre>{{ selectedObject }}</pre>
-
-
   </div>
 </template>
 
 <style scoped>
   .ObjectTunerBox {
-    border: 1px solid #d9d9d950;
-    min-width: 500px;
-    margin: 2em;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background-soft);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin: 2rem auto;
+    max-width: 600px;
   }
-  h2 {
-    color: white;
-    padding-left: 1em;
-  }
+
 </style>

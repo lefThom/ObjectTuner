@@ -1,5 +1,10 @@
-# Vue 3 + Vite
+# ObjectTuner
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+ObjectTuner is a Vue.js component that allows users to select an object from a dropdown list and dynamically adjust its properties using sliders.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+- Custom object selection dropdown with additional info
+- Automatic rendering of adjustable properties
+- Slider + number input control for each property
+- Loads object data from a JSON file (`/data.json`)
