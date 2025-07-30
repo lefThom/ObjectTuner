@@ -60,4 +60,8 @@ onMounted(async () => {
     max-width: 600px;
   }
 
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
 </style>
