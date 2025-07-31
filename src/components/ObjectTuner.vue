@@ -29,7 +29,6 @@ onMounted(async () => {
       v-model="selectedId"
       :options="objects"
       :labelKey="'name'"
-      :displayKeys="['vitesse', 'puissance']"
       :clearable="false"
     />
 

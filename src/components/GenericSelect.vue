@@ -14,10 +14,6 @@ const props = defineProps({
     type: String,
     default: 'name'
   },
-  displayKeys: {
-    type: Array,
-    default: () => []
-  },
   placeholder: {
     type: String,
     default: 'Choose...'
@@ -44,9 +40,10 @@ const emit = defineEmits(['update:modelValue'])
     <template #option="option">
       <div>
         <h3 style="margin: 0; color: black">{{ option[labelKey] }}</h3>
-        <em v-if="displayKeys.length" style="margin: 0; color: #7a7a7a">
-          <template v-for="(key, idx) in displayKeys" :key="key">
-            {{ key }}: {{ option[key] }}<span v-if="idx < displayKeys.length - 1">, </span>
+        <em v-if="option.properties" style="margin: 0; color: #7a7a7a">
+          <template v-for="(property, key, idx) in option.properties" :key="key">
+            {{ key }}: {{ property.defaultValue }} {{ property.units }}
+            <span v-if="idx < Object.keys(option.properties).length - 1">, </span>
           </template>
         </em>
       </div>
