@@ -3,19 +3,34 @@ import { ref, computed, onMounted } from 'vue'
 import SingleTuner from './SingleTuner.vue'
 import GenericSelect from './GenericSelect.vue'
 
-// Récupération du type de boîte depuis les props
+// Props passed from the parent component
 const props = defineProps(['boxTitle'])
 
+// Reactive state for object list and currently selected object's ID
 const objects = ref([])
 const selectedId = ref(null)
 
+// Computed property to retrieve the selected object based on selectedId
 const selectedObject = computed(() =>
   objects.value.find((obj) => obj.id === selectedId.value)
 )
 
+// Computed property to filter out properties where display is explicitly false
+// This returns an array of key + property data for rendering sliders
+const filteredProperties = computed(() => {
+  if (!selectedObject.value || !selectedObject.value.properties) return []
+
+  return Object.entries(selectedObject.value.properties)
+    .filter(([_, prop]) => prop && prop.display !== false)
+    .map(([key, prop]) => ({ key, ...prop }))
+})
+
+// Load objects data from JSON when the component is mounted
 onMounted(async () => {
   const res = await fetch('/data.json')
   objects.value = await res.json()
+
+    // Automatically select the first object by default
   if (objects.value.length) {
     selectedId.value = objects.value[0].id
   }
@@ -34,9 +49,9 @@ onMounted(async () => {
 
     <div v-if="selectedObject">
       <SingleTuner
-        v-for="(prop, key) in selectedObject.properties"
+        v-for="(prop, key) in filteredProperties"
           :key="`prop-${selectedObject.id}-${key}`"
-          :propertyName="key"
+          :propertyName="prop.key"
           :value="prop.defaultValue"
           :min="prop.min"
           :max="prop.max"
