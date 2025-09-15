@@ -4,7 +4,7 @@ import SingleTuner from './SingleTuner.vue'
 import GenericSelect from './GenericSelect.vue'
 
 // Props passed from the parent component
-const props = defineProps(['boxTitle'])
+const props = defineProps(['objectTitle'])
 
 // Reactive state for object list and currently selected object's ID
 const objects = ref([])
@@ -30,7 +30,7 @@ onMounted(async () => {
   const res = await fetch('/data.json')
   objects.value = await res.json()
 
-    // Automatically select the first object by default
+  // Automatically select the first object by default
   if (objects.value.length) {
     selectedId.value = objects.value[0].id
   }
@@ -39,7 +39,7 @@ onMounted(async () => {
 
 <template>
   <div class="ObjectTunerBox" v-if="objects.length">
-    <h2>{{ boxTitle }}</h2>
+    <h2>{{ objectTitle }}</h2>
     <GenericSelect
       v-model="selectedId"
       :options="objects"

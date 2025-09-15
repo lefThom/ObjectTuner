@@ -1,12 +1,11 @@
 <script setup>
 import ObjectTuner from './components/ObjectTuner.vue'
-import SingleTuner from './components/SingleTuner.vue'
 </script>
 
 <template>
   <main>
     <h1>ObjectTuner Component for Vue.js</h1>
-    <ObjectTuner boxTitle="Box title"/>
+    <ObjectTuner objectTitle="Object title"/>
   </main>
 </template>
 
