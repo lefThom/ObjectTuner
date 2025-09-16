@@ -45,7 +45,9 @@ function onPropertyUpdate(key, value) {
 function onSelectObject(val) {
   selectedId.value = val
   selectedObjectModified.value = false // reset même si c’est le même objet
+  console.log(`onSelectObject ${selectedId.value}`)
 }
+
 </script>
 
 <template>
@@ -58,9 +60,10 @@ function onSelectObject(val) {
       :clearable="false"
       :isModified=selectedObjectModified
       @update:modelValue="onSelectObject"
+      @updateSameSelected="onSelectObject"
     />
 
-    <div v-if="selectedObject">
+    <div v-if="selectedObject" :key="`${selectedObject.id}-${selectedObjectModified}`">
       <SingleTuner
         v-for="(prop, key) in filteredProperties"
           :key="`prop-${selectedObject.id}-${key}`"
