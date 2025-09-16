@@ -21,9 +21,14 @@ const props = defineProps({
   clearable: {
     type: Boolean,
     default: false
+  },
+  isModified: {
+    type: Boolean,
+    default: false
   }
 })
 
+const labelSuffix = ' (modified)'
 const emit = defineEmits(['update:modelValue'])
 </script>
 
@@ -37,6 +42,11 @@ const emit = defineEmits(['update:modelValue'])
     :modelValue="modelValue"
     @update:modelValue="val => emit('update:modelValue', val)"
   >
+    <template #selected-option="option">
+      <span style="white-space: pre">
+        {{ option[labelKey] }}<span v-if="isModified">{{ labelSuffix }}</span>
+      </span>
+    </template>
     <template #option="option">
       <div>
         <h3 style="margin: 0; color: black">{{ option[labelKey] }}</h3>

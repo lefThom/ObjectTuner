@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import SingleTuner from './SingleTuner.vue'
 import GenericSelect from './GenericSelect.vue'
 
@@ -9,6 +9,7 @@ const props = defineProps(['objectTitle'])
 // Reactive state for object list and currently selected object's ID
 const objects = ref([])
 const selectedId = ref(null)
+const selectedObjectModified = ref(false)
 
 // Computed property to retrieve the selected object based on selectedId
 const selectedObject = computed(() =>
@@ -35,6 +36,16 @@ onMounted(async () => {
     selectedId.value = objects.value[0].id
   }
 })
+
+function onPropertyUpdate(key, value) {
+  console.log(`Property ${key} updated to`, value)
+  selectedObjectModified.value = true;
+}
+
+function onSelectObject(val) {
+  selectedId.value = val
+  selectedObjectModified.value = false // reset même si c’est le même objet
+}
 </script>
 
 <template>
@@ -43,8 +54,10 @@ onMounted(async () => {
     <GenericSelect
       v-model="selectedId"
       :options="objects"
-      :labelKey="'name'"
+      :labelKey="'objectName'"
       :clearable="false"
+      :isModified=selectedObjectModified
+      @update:modelValue="onSelectObject"
     />
 
     <div v-if="selectedObject">
@@ -57,7 +70,10 @@ onMounted(async () => {
           :max="prop.max"
           :step="prop.step"
           :units="prop.units"
-          @update:value="val => prop.value = val"
+          @update:value="val => {
+            prop.value = val
+            onPropertyUpdate(prop.key, val)
+          }"
       />
     </div>
   </div>

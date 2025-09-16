@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Objet A",
+    "objectName": "Objet A",
     "properties": {
       "Vitesse": { "display": true, "units": "mJ/m²", "defaultValue": 60, "min": 0, "max": 100, "step": 1 },
       "Puissance": { "display": true,  "units": "mJ/m²", "defaultValue": 4, "min": 0, "max": 10, "step": 0.5 }
@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "name": "Objet B",
+    "objectName": "Objet B",
     "properties": {
       "Vitesse": { "display": true,  "units": "mJ/m²", "defaultValue": 70, "min": 0, "max": 100, "step": 1 },
       "Puissance": { "display": true,  "units": "mJ/m²", "defaultValue": 8, "min": 0, "max": 10, "step": 0.5 }
