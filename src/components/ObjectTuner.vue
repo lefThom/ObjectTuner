@@ -27,7 +27,7 @@ const filteredProperties = computed(() => {
 
 // Load objects data from JSON when the component is mounted
 onMounted(async () => {
-  const res = await fetch('/data.json')
+  const res = await fetch('/ObjectTuner/data.json')
   objects.value = await res.json()
 
   // Automatically select the first object by default
