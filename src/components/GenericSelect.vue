@@ -31,11 +31,6 @@ const props = defineProps({
 const labelSuffix = ' (modified)'
 const emit = defineEmits(['update:modelValue', 'updateSameSelected'])
 
-function onOptionSelected(option) {
-  console.log("Option clicked:", option);
-  emit('updateSameSelected', props.modelValue)
-}
-
 </script>
 
 <template>
@@ -49,11 +44,13 @@ function onOptionSelected(option) {
     @update:modelValue="val => emit('update:modelValue', val)"
     @option:selecting= "emit('updateSameSelected', props.modelValue)"
   >
+
     <template #selected-option="option">
       <span style="white-space: pre">
         {{ option[labelKey] }}<span v-if="isModified">{{ labelSuffix }}</span>
       </span>
     </template>
+    
     <template #option="option">
       <div>
         <h3 style="margin: 0; color: black">{{ option[labelKey] }}</h3>
